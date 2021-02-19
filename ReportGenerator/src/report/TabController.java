@@ -21,7 +21,7 @@ public class TabController {
     private void initialize() {
 		
 		initializeTabPane();
-		//reportTextArea.setWrapText(true);
+	//	reportTextArea.setWrapText(true);
 		//initializeGridPane();
 		
 	}

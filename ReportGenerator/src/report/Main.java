@@ -16,12 +16,10 @@ public class Main extends Application {
 
 	private Stage primaryStage;
 	private AnchorPane mainLayout;
-	//private TabPane mainLayout;
 		
 	public Main() {
-		FileCount.fileRead();
-		//Excel e = new Excel();
-		//e.read();
+		//FileCount.fileRead();
+
 	}
 	
 	@Override

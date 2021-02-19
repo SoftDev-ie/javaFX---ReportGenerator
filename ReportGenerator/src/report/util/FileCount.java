@@ -1,17 +1,16 @@
 package report.util;
 import java.io.*;
-
 public class FileCount {
 	public static String folderPath;
 		
-		public static void fileRead()
+		public static void fileRead(String folderPath)
 		{
-		//folderPath = "C:\\Users\\Chris\\Desktop\\schoolprogram";		    
-		folderPath = System.getProperty("user.dir");
-			
+		//folderPath = System.getProperty("user.home")+File.separator+"Desktop"+File.separator+"schoolprogram"+File.separator;
+		
+			Const.path = folderPath;
+		
 		String suffix = ".xlsx";
-		File folder = new File(folderPath);
-		    	
+		File folder = new File(folderPath);  	
 		      File[] listOfFiles = folder.listFiles();
 		      for (int i = 0; i < listOfFiles.length; i++) 
 		      {

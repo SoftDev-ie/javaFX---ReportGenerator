@@ -11,10 +11,10 @@ import org.apache.commons.text.StrSubstitutor;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -24,11 +24,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import report.model.Item;
 import report.util.Const;
 import report.util.Excel;
+import report.util.FileCount;
 
 public class MainController {
 	@FXML
@@ -43,6 +45,12 @@ public class MainController {
 	private Label reportLabel;
 	@FXML
 	private TextArea reportTextArea;
+	@FXML
+	private Label pathLabel;
+	@FXML
+	private Label excelLabel;
+	@FXML
+	private Button excelButton;
 	
 	private ArrayList<GridPane> gridList = new ArrayList<>();
 	private int amount;
@@ -54,23 +62,27 @@ public class MainController {
 		
 		
 	}
-	private void initializeTabPane() 
-	{
-	for(int i=0; i<Const.excelFiles.size(); i++)
-	{
-		ObservableList<Item> itemList = Excel.read(Const.excelFiles.get(i));
-		//FXMLLoader loader = new FXMLLoader(getClass().getResource("GUIMain.fxml"));
-		Tab tab = new Tab(Const.excelFiles.get(i));
-		try {
-			tab.setContent(initializeGridPane(itemList));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private void initializeTabPane() {
+//		pathLabel.setText(Const.path);
+//		excelLabel.setText(Const.excelFiles.toString());
+//		pathLabel.setVisible(true);
+//		excelLabel.setVisible(true);
 		
-		tabPane.getTabs().add(tab);
-	
-	}
+//		for(int i=0; i<Const.excelFiles.size(); i++)
+//		{
+//			ObservableList<Item> itemList = Excel.read(Const.excelFiles.get(i));
+//			//FXMLLoader loader = new FXMLLoader(getClass().getResource("GUIMain.fxml"));
+//			Tab tab = new Tab(Const.excelFiles.get(i));
+//			try {
+//				tab.setContent(initializeGridPane(itemList));
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//			tabPane.getTabs().add(tab);
+//		
+//		}
 }
 	
 	private GridPane initializeGridPane(ObservableList<Item> itemData) {
@@ -219,5 +231,35 @@ public class MainController {
             System.out.println("Cannot Save File");
         }
         
-    } 
+    }
+	@FXML
+	private void getExcel() {
+		System.out.println("working");
+		Stage stage = (Stage) anchorPane.getScene().getWindow();
+		 DirectoryChooser directoryChooser = new DirectoryChooser();
+		 File selectedDirectory = directoryChooser.showDialog(stage);
+		 if(selectedDirectory != null) {
+			 Const.path = selectedDirectory.getAbsolutePath();
+			 FileCount.fileRead(selectedDirectory.getAbsolutePath());
+			 
+			 for(int i=0; i<Const.excelFiles.size(); i++)
+				{
+					ObservableList<Item> itemList = Excel.read(Const.excelFiles.get(i));
+					//FXMLLoader loader = new FXMLLoader(getClass().getResource("GUIMain.fxml"));
+					Tab tab = new Tab(Const.excelFiles.get(i));
+					try {
+						tab.setContent(initializeGridPane(itemList));
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					tabPane.getTabs().add(tab);
+				
+				}
+		 }
+		 
+		 //pathLabel.setText(selectedDirectory.getAbsolutePath());
+
+	}
 }

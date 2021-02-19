@@ -54,5 +54,8 @@
          </children>
       </Pane>
       <TabPane fx:id="tabPane" layoutX="20.0" layoutY="152.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="640.0" AnchorPane.topAnchor="170.0" />
+      <Label fx:id="pathLabel" layoutX="600.0" layoutY="41.0" text="Label" visible="false" />
+      <Label fx:id="excelLabel" layoutX="600.0" layoutY="62.0" text="Label" visible="false" />
+      <Button fx:id="excelButton" layoutX="602.0" layoutY="91.0" mnemonicParsing="false" onAction="#getExcel" text="Link excel files" />
    </children>
 </AnchorPane>
