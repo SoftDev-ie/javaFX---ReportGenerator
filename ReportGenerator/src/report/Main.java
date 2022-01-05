@@ -18,7 +18,7 @@ public class Main extends Application {
 	private AnchorPane mainLayout;
 		
 	public Main() {
-		//FileCount.fileRead();
+		//FileCount.fileRead();  
 
 	}
 	
